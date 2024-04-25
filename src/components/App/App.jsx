@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../Header/Header.jsx'
+import AddForm from '../AddForm/AddForm.jsx'
+import ShoppingList from '../ShoppingList/ShoppingList.jsx'
 import './App.css';
 
 
@@ -29,7 +31,8 @@ function App() {
         <div className="App">
             <Header />
             <main>
-                <p>Under Construction...</p>
+            <AddForm fetchShoppingList={fetchShoppingList} />
+            <ShoppingList fetchShoppingList={fetchShoppingList} shoppingList={shoppingList}/>
             </main>
         </div>
     );
