@@ -4,6 +4,22 @@ const pool = require('../modules/pool.js');
 
 // Setup a GET route
 
+router.get("/", (req, res) => {
+  const sqlText = `
+      SELECT * FROM "shoppingList"
+        ORDER BY "name" ;
+    `;
+  pool
+    .query(sqlText)
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log(`Error making database query ${sqlText}`, error);
+      res.sendStatus(500); // Good servers always respond.
+    });
+});
+
 
 // Setup a POST route 
 router.post('/', (req, res) => {
