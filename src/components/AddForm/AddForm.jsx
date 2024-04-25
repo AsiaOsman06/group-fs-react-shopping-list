@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-function AddForm({getShoppingList}) {
+function AddForm({fetchShoppingList}) {
 
     let [inputName, setInputName] = useState('');
     let [inputQuantity, setInputQuantity] = useState('');
@@ -20,7 +20,7 @@ function AddForm({getShoppingList}) {
         })
         .then(response => {
             console.log('Add Item successful!');
-            getShoppingList();
+            fetchShoppingList();
         })
         .catch(error => {
             console.log('Error in adding of item: ', error);
@@ -52,7 +52,6 @@ function AddForm({getShoppingList}) {
             </input>
         </>             
     )
-
-
-
 }
+
+export default Addform;
