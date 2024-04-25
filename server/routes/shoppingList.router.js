@@ -5,7 +5,6 @@ const pool = require('../modules/pool.js');
 // Setup a GET route
 
 
-
 // Setup a POST route 
 router.post('/', (req, res) => {
     const item = req.body;
@@ -24,5 +23,45 @@ router.post('/', (req, res) => {
         })
 })
 
+router.put('/:id', (req,res) => {
+    // Update Single Item 
+    console.log("In PUT route"); // logging which route is called
+    console.log(req.params.id, req.body); // logging params and body
+    const sqlText =`
+        UPDATE "shoppingList"
+        SET "isPurchased" = $1
+        WHERE 'id" = $2
+    `;
+    let sqlValues = [true, req.params.id];
+    pool.query(sqlText, sqlValues)
+        .then((result) => {
+            console.log ("Purchased item");
+            res.sendStatus(200); //return success
+        })
+        .catch((error)=>{
+            console.log("Error updating purchase status: ", error);
+            res.send(500); //return error code
+        })
+});
+//
 
+router.delete('/:id',(req,res) => {
+    // Delete Single Item
+    console.log("DELETE single item Route");
+    console.log(req.params.id) //Confirm which item is to be deleted
+    const sqlText = `
+        DELETE FROM "shoppingList"
+        WHERE ID = $1
+    `;
+    let sqlValues = [req.params.id];
+    pool.query(sqlText, sqlValues)
+        .then ((response) => {
+            console.log("deleted item");
+            res.sendStatus(200); // Success!
+        })
+        .catch ((error)=>{
+            console.log("Error deleting Item ", error);
+            res.sendStatus(500);// error
+        })
+})
 module.exports = router;
