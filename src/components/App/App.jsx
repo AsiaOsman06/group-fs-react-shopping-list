@@ -6,7 +6,7 @@ import './App.css';
 
 
 function App() {
-    const [shoppingList, setShoppingList] =useState([]);
+    const [shoppingList, setShoppingList] = useState([]);
 
     useEffect(() => {
         fetchShoppingList();
@@ -30,7 +30,7 @@ function App() {
         <div className="App">
             <Header />
             <main>
-            <ShoppingList/>
+            <ShoppingList fetchShoppingList={fetchShoppingList} shoppingList={shoppingList}/>
 
             </main>
         </div>
