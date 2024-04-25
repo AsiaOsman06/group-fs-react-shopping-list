@@ -5,7 +5,6 @@ const pool = require('../modules/pool.js');
 // Setup a GET route
 
 
-
 // Setup a POST route 
 router.post('/', (req, res) => {
     const item = req.body;
