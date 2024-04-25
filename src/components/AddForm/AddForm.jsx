@@ -20,7 +20,7 @@ function AddForm({fetchShoppingList}) {
         })
         .then(response => {
             console.log('Add Item successful!');
-            getShoppingList();
+            fetchShoppingList();
         })
         .catch(error => {
             console.log('Error in adding of item: ', error);
@@ -52,7 +52,6 @@ function AddForm({fetchShoppingList}) {
             </input>
         </>             
     )
-
-
-
 }
+
+export default Addform;
