@@ -5,7 +5,7 @@ function ShoppingList({shoppingList, fetchShoppingList}){
 
     const handleReset = () => {
     console.log('handleReset is working!')
-    axios.put('/api/shoppingList')
+    axios.put('/api/shoppinglist')
     .then(response => {
         fetchShoppingList()
 
@@ -17,7 +17,7 @@ function ShoppingList({shoppingList, fetchShoppingList}){
 
     const handleClear = () => {
     console.log('handleClear is working!')
-    axios.delete('/api/shoppingList')
+    axios.delete('/api/shoppinglist')
     .then(response => {
         fetchShoppingList()
     })

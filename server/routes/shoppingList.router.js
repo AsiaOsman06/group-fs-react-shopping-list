@@ -39,17 +39,16 @@ router.post('/', (req, res) => {
         })
 })
 
-router.put('/:id', (req,res) => {
+router.put('/', (req,res) => {
     // Update Single Item 
     console.log("In PUT route"); // logging which route is called
-    console.log(req.params.id, req.body); // logging params and body
     const sqlText =`
         UPDATE "shoppingList"
-        SET "isPurchased" = $1
-        WHERE 'id" = $2
+        SET "isPurchased" = FALSE;
+        
     `;
-    let sqlValues = [true, req.params.id];
-    pool.query(sqlText, sqlValues)
+   
+    pool.query(sqlText)
         .then((result) => {
             console.log ("Purchased item");
             res.sendStatus(200); //return success
