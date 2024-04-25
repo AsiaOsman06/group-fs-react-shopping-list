@@ -1,9 +1,9 @@
 import React from "react";
 import axios from "axios";
 
-function ShoppingListItem({item}){
+function ShoppingListItem({ item, fetchShoppingList }){
 
-    const buyItem = (item.id) => {
+    const buyItem = () => {
         axios({
             method: "PUT",
             url: `/api/shoppingList/${item.id}`,
@@ -18,7 +18,7 @@ function ShoppingListItem({item}){
         })
     };
 
-    const removeItem({item.id})=>{
+    const removeItem=()=>{
         axios({
             method: 'DELETE',
             url: `/api/shoppingList/${item.id}`,
@@ -36,9 +36,8 @@ function ShoppingListItem({item}){
     <article key={item.id}>
                     {item.name}
                     {item.quantity} {item.unit}
-                    {!item.isPurchased ? <button onClick={() => buyItem(item.id)}>Buy</button> : null}
-                    <button onClick={() => removeItem(item.id)}>Remove</button>
-            ;
+                    {!item.isPurchased ? <button onClick={buyItem}>Buy</button> : null}
+                    <button onClick={removeItem}>Remove</button>
     </article>
 );
 }
