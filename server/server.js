@@ -6,11 +6,12 @@ const PORT = process.env.PORT || 5001;
 /** ---------- MIDDLEWARE ---------- **/
 app.use(bodyParser.json()); // needed for axios requests
 app.use(express.static('build'));
+const shoppingListRouter = require('./routes/shoppingList.router.js');
 
 /** ---------- EXPRESS ROUTES ---------- **/
 // Create your API routes in a separate file
 // and plug them in here with `app.use()`
-app.use('/api/shoppinglist', guestRouter);
+app.use('/api/shoppinglist', shoppingListRouter);
 
 
 /** ---------- START SERVER ---------- **/

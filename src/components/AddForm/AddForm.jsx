@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-function AddForm({getShoppingList}) {
+function AddForm({fetchShoppingList}) {
 
     let [inputName, setInputName] = useState('');
     let [inputQuantity, setInputQuantity] = useState('');
