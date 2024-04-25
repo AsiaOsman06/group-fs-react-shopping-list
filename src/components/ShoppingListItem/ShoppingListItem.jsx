@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-function ShoppingListItem({ key, item, fetchShoppingList }){
+function ShoppingListItem({ item, fetchShoppingList }){
 
     const buyItem = () => {
         axios({
