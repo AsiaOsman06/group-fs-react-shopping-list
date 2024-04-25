@@ -29,7 +29,7 @@ function App() {
         <div className="App">
             <Header />
             <main>
-                <p>Under Construction...</p>
+            <AddForm fetchShoppingList={fetchShoppingList}/>
             </main>
         </div>
     );
