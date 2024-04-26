@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import '../AddForm/AddForm.css'
+import './AddForm.css'
 
 function AddForm({fetchShoppingList}) {
 
