@@ -1,5 +1,6 @@
 import axios from 'axios';
 import ShoppingListItem from '../ShoppingListItem/ShoppingListItem';
+import './ShoppingList.css'
 
 function ShoppingList({shoppingList, fetchShoppingList}){
 
@@ -29,22 +30,20 @@ function ShoppingList({shoppingList, fetchShoppingList}){
 
     return(
         <>
-        <header>
-            <h1>Shopping List:</h1>
-            <button onClick={handleReset}>Reset</button>
-            <button onClick={handleClear}>Clear</button>
-        </header>
-        <div>
-            {shoppingList.map (item => {
-                return(
-                    
-                 <ShoppingListItem key= {item.id} item={item} fetchShoppingList = {fetchShoppingList}/>
-                 
-            )})}
-        </div>
-
+            <header>
+                <h1>Shopping List:</h1>
+                <button onClick={handleReset}>Reset</button>
+                <button onClick={handleClear}>Clear</button>
+            </header>
+            <div className="shopping-list">
+                {shoppingList.map (item => {
+                    return(
+                        <ShoppingListItem key= {item.id} 
+                                          item={item} 
+                                          fetchShoppingList={fetchShoppingList}/>
+                )})}
+            </div>
         </>
-
     )
 }
 
