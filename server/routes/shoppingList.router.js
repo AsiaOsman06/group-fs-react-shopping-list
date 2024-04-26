@@ -66,12 +66,33 @@ router.delete('/:id',(req,res) => {
     console.log(req.params.id) //Confirm which item is to be deleted
     const sqlText = `
         DELETE FROM "shoppingList"
-        WHERE ID = $1
+        WHERE ID = $1;
     `;
     let sqlValues = [req.params.id];
     pool.query(sqlText, sqlValues)
         .then ((response) => {
             console.log("deleted item");
+            res.sendStatus(200); // Success!
+        })
+        .catch ((error)=>{
+            console.log("Error deleting Item ", error);
+            res.sendStatus(500);// error
+        })
+})
+
+
+router.delete('/',(req,res) => {
+    // Clear All Item
+    console.log("Clear All item Route");
+    console.log(req.body) 
+    const sqlText = `
+        DELETE FROM "shoppingList";
+       
+    `;
+
+    pool.query(sqlText)
+        .then ((response) => {
+            console.log("Cleared item");
             res.sendStatus(200); // Success!
         })
         .catch ((error)=>{

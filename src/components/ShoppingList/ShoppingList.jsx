@@ -21,6 +21,7 @@ function ShoppingList({shoppingList, fetchShoppingList}){
     axios.delete('/api/shoppinglist')
     .then(response => {
         fetchShoppingList()
+       
     })
     .catch(err => {
         alert('❌ Error Clearing Shopping List!!!❌', err)
