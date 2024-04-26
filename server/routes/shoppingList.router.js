@@ -40,15 +40,15 @@ router.post('/', (req, res) => {
 })
 
 router.put('/:id', (req,res) => {
-    // Update Single Item 
+    // Update Single Item reset purchase status
     console.log("In PUT route"); // logging which route is called
-    console.log(req.params.id, req.body); // logging params and body
     const sqlText =`
         UPDATE "shoppingList"
-        SET "isPurchased" = $1
-        WHERE 'id" = $2
+        SET "isPurchased" = TRUE
+        WHERE "id" = $1;
+        
     `;
-    let sqlValues = [true, req.params.id];
+   const sqlValues =[req.params.id]
     pool.query(sqlText, sqlValues)
         .then((result) => {
             console.log ("Purchased item");
@@ -67,7 +67,7 @@ router.delete('/:id',(req,res) => {
     console.log(req.params.id) //Confirm which item is to be deleted
     const sqlText = `
         DELETE FROM "shoppingList"
-        WHERE ID = $1
+        WHERE ID = $1;
     `;
     let sqlValues = [req.params.id];
     pool.query(sqlText, sqlValues)
@@ -80,4 +80,45 @@ router.delete('/:id',(req,res) => {
             res.sendStatus(500);// error
         })
 })
-module.exports = router;
+
+router.put('/', (req,res) => {
+    // Update All Items reset the purchase status
+    console.log("In PUT route"); // logging which route is called
+    const sqlText =`
+        UPDATE "shoppingList"
+        SET "isPurchased" = False;
+    `;
+   
+    pool.query(sqlText)
+        .then((result) => {
+            console.log ("Resetted all Purchased items");
+            res.sendStatus(200); //return success
+        })
+        .catch((error)=>{
+            console.log("Error updating Reset purchase status: ", error);
+            res.send(500); //return error code
+        })
+});
+//
+
+
+router.delete('/',(req,res) => {
+    // Clear All Item
+    console.log("Clear All item Route");
+    console.log(req.body) 
+    const sqlText = `
+        DELETE FROM "shoppingList";
+       
+    `;
+
+    pool.query(sqlText)
+        .then ((response) => {
+            console.log("Cleared item");
+            res.sendStatus(200); // Success!
+        })
+        .catch ((error)=>{
+            console.log("Error deleting Item ", error);
+            res.sendStatus(500);// error
+        })
+})
+ module.exports = router;

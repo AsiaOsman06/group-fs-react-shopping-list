@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../Header/Header.jsx'
+
+import ShoppingList from '../ShoppingList/ShoppingList.jsx';
+
 import AddForm from '../AddForm/AddForm.jsx'
-import ShoppingList from '../ShoppingList/ShoppingList.jsx'
+
 import './App.css';
 
 
 function App() {
-    const [shoppingList, setShoppingList] =useState([]);
+    const [shoppingList, setShoppingList] = useState([]);
 
     useEffect(() => {
         fetchShoppingList();
@@ -31,8 +34,10 @@ function App() {
         <div className="App">
             <Header />
             <main>
+
             <AddForm fetchShoppingList={fetchShoppingList} />
             <ShoppingList fetchShoppingList={fetchShoppingList} shoppingList={shoppingList}/>
+
             </main>
         </div>
     );
