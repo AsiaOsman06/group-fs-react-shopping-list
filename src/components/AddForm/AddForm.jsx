@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import '../AddForm/AddForm.css'
 
 function AddForm({fetchShoppingList}) {
 
@@ -49,31 +50,37 @@ function AddForm({fetchShoppingList}) {
 
 
     return (
-   
-  <>
+        <>
             <h2>Add An Item</h2>
-            <form onSubmit={handleSubmit}>
-            <label htmlFor="input-name">Item:</label>
-            <input type="text"
-                   id="input-name" 
-                   value={inputName}
-                   onChange={(e)=> {setInputName(e.target.value)}}>
-            </input>
-            <label htmlFor="input-quantity">Quantity:</label>
-            <input type="text"
-                   id="input-quantity" 
-                   value={inputQuantity}
-                   onChange={(e)=> {setInputQuantity(e.target.value)}}>
-            </input>
-            <label htmlFor="input-unit">Unit:</label>
-            <input type="text"
-                   id="input-unit" 
-                   value={inputUnit}
-                   onChange={(e)=> {setInputUnit(e.target.value)}}>
-            </input>
-            <button type="submit">Save</button>
-        </form>
-         </>        
+            <form className="add-form"
+                  onSubmit={handleSubmit}>
+                <div className="input-name-box">
+                    <label htmlFor="input-name">Item:</label>
+                    <input type="text"
+                        id="input-name" 
+                        value={inputName}
+                        onChange={(e)=> {setInputName(e.target.value)}}>
+                    </input>
+                </div>
+                <div className="input-quantity-box">
+                    <label htmlFor="input-quantity">Quantity:</label>
+                    <input type="text"
+                        id="input-quantity" 
+                        value={inputQuantity}
+                        onChange={(e)=> {setInputQuantity(e.target.value)}}>
+                    </input>
+                </div>
+                <div className="input-unit-box">
+                    <label htmlFor="input-unit">Unit:</label>
+                    <input type="text"
+                        id="input-unit" 
+                        value={inputUnit}
+                        onChange={(e)=> {setInputUnit(e.target.value)}}>
+                    </input>
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        </>        
     )
 }
 
