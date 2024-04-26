@@ -7,8 +7,7 @@ function AddForm({fetchShoppingList}) {
     let [inputQuantity, setInputQuantity] = useState('');
     let [inputUnit, setInputUnit] = useState('');
 
-    const addItem = (event) => {
-        event.preventDefault();
+    const addItem = () => {
         axios({
             method: 'POST',
             url: 'api/shoppinglist',
@@ -20,6 +19,9 @@ function AddForm({fetchShoppingList}) {
         })
         .then(response => {
             console.log('Add Item successful!');
+            setInputName('');
+            setInputQuantity('');
+            setInputUnit('');
             fetchShoppingList();
         })
         .catch(error => {
@@ -28,10 +30,29 @@ function AddForm({fetchShoppingList}) {
     }
 
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // form validation goes here...
+        if (!inputName) {
+            alert('You need to enter an item name!');
+        } else if (!inputQuantity) {
+            alert('You need a quantity!');
+        } else if (!inputUnit) {
+            alert('Please enter a unit!');
+        // if form items not blank, add the item to database
+        } else {
+            addItem( {name: inputName,
+                      quantity: inputQuantity,
+                      unit: inputUnit });
+        } 
+    }
+
 
     return (
-        <>
+   
+  <>
             <h2>Add An Item</h2>
+            <form onSubmit={handleSubmit}>
             <label htmlFor="input-name">Item:</label>
             <input type="text"
                    id="input-name" 
@@ -50,8 +71,10 @@ function AddForm({fetchShoppingList}) {
                    value={inputUnit}
                    onChange={(e)=> {setInputUnit(e.target.value)}}>
             </input>
-        </>             
+            <button type="submit">Save</button>
+        </form>
+         </>        
     )
 }
 
-export default Addform;
+export default AddForm;

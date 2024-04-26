@@ -7,7 +7,6 @@ const shoppingListRouter = require('./routes/shoppingList.router.js')
 /** ---------- MIDDLEWARE ---------- **/
 app.use(bodyParser.json()); // needed for axios requests
 app.use(express.static('build'));
-const shoppingListRouter = require('./routes/shoppingList.router.js');
 
 /** ---------- EXPRESS ROUTES ---------- **/
 // Create your API routes in a separate file
