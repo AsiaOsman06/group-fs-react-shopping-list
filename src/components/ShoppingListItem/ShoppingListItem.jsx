@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import './ShoppingListItem.css'
 
 function ShoppingListItem({ item, fetchShoppingList }){
 
@@ -33,11 +34,13 @@ function ShoppingListItem({ item, fetchShoppingList }){
     };
 
     return (
-    <article key={item.id}>
-                    {item.name}
-                    {item.quantity} {item.unit}
-                    {!item.isPurchased ? <button onClick={buyItem}>Buy</button> : null}
-                    <button onClick={removeItem}>Remove</button>
+    <article key={item.id} className="item-box">
+                <p className="item-name">{item.name}</p> 
+                <p className="item-quantity">  {item.quantity} <span className="item-unit">{item.unit}</span></p>
+                <div className="button-group">  
+                    {!item.isPurchased ? <button id="buy-button" onClick={buyItem}>Buy</button> : null}
+                    {!item.isPurchased ? <button id="remove-button" onClick={removeItem}>Remove</button> : <p id="purchased-label">Purchased</p>}
+                </div>
     </article>
 );
 }

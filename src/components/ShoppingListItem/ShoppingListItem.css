@@ -1,0 +1,26 @@
+.item-box {
+    border: .1rem solid black;
+    border-radius: .5rem;
+    padding: .5rem;
+    min-width: 10rem;
+}
+
+.item-name {
+    text-align: center;
+}
+
+.item-quantity {
+    text-align: center;
+}
+
+.item-unit {
+    font-weight: 800;
+}
+
+.button-group {
+    text-align: center;
+}
+
+.button-group button {
+    margin: .1rem;
+}
