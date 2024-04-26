@@ -39,12 +39,12 @@ router.post('/', (req, res) => {
         })
 })
 
-router.put('/', (req,res) => {
-    // Update Single Item 
+router.put('/:id', (req,res) => {
+    // Update Single Item reset purchase status
     console.log("In PUT route"); // logging which route is called
     const sqlText =`
         UPDATE "shoppingList"
-        SET "isPurchased" = FALSE;
+        SET "isPurchased" = TRUE;
         
     `;
    
